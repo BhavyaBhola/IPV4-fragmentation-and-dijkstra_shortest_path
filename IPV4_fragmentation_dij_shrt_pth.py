@@ -70,6 +70,14 @@ class graph(fragmentation):
         n_pkts = self.packet_gen()
 
         for i in range(n_pkts):
+
+            flag = input('would you like to change the topology of the graph (y/n)')
+            if flag == "y":
+                self.vertices = int(input('enter the number of vertices/nodes in the network'))
+                self.graph = [[int(input(f'distance/weight between {q}th and {p}th vertex')) for p in range(self.vertices)] for q in range(self.vertices)]
+
+                print(f"the graph is ------> {self.graph_dict()}")
+
             src = int(input(f"source of {i+1} th packet"))
             destination = int(input(f"destination for {i+1} th packet"))
             self.dijkstra_shortest_path(src, destination)
@@ -95,7 +103,7 @@ if __name__ == "__main__":
                [0,0,0,0,0,0]]
     
     
-    #g.graph = [[int(input(f'distance/weight between {i}th and {j}th vertex')) for i in range(n_vrts)] for j in range(n_vrts)]
+    #g.graph = [[int(input(f'distance/weight between {j}th and {i}th vertex')) for i in range(n_vrts)] for j in range(n_vrts)]
     print(f"the considered topology is ------> {g.graph_dict()} ")
     
     g.sending_pkts()
